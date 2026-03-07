@@ -40,6 +40,12 @@ void    rra(t_node **a);
 void    rrb(t_node **b);
 void    rrr(t_node **a, t_node **b);
 
+t_node	*stack_new(int value);
+void	stack_add_back(t_node **stack, t_node *new_node);
+void	stack_clear(t_node **stack);
+int		stack_size(t_node *stack);
+
+
 double	calculate_disorder(int *arr, int size);
 
 int		*parse_args(int argc, char **argv, int check_buf);
