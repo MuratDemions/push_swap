@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdlib.h>
 
 int	ft_atoi(const char *nptr)
 {
@@ -33,4 +34,51 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+static size_t	intlen(int n)
+{
+	long	nb;
+	size_t	len;
+
+	len = 0;
+	nb = n;
+	if (nb <= 0)
+	{
+		nb = nb * -1;
+		len++;
+	}
+	while (nb)
+	{
+		nb = nb / 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	long	nb;
+	size_t	len;
+	char	*str;
+
+	nb = n;
+	len = intlen(n);
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	if (nb == 0)
+		str[0] = '0';
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = nb * -1;
+	}
+	str[len] = '\0';
+	while (nb > 0)
+	{
+		str[--len] = (nb % 10) + '0';
+		nb = nb / 10;
+	}
+	return (str);
 }
