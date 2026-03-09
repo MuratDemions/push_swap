@@ -37,15 +37,18 @@ void    rra(t_node **a)
 {
     r_rotate(*a);
     write(1, "rra\n", 4);
+    count_move("rra");
 }
 void    rrb(t_node **b)
 {
     r_rotate(*b);
     write(1, "rrb\n", 4);
+    count_move("rrb");
 }
 void    rrr(t_node **a, t_node **b)
 {
     r_rotate(*a);
     r_rotate(*b);
     write(1, "rrr\n", 4);
+    count_move("rrr");
 }

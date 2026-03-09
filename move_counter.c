@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_counter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antigravity <antigravity@student.42.fr>    +#+  +:+       +#+        */
+/*   By: musipit <musipit@student.42kocaeli.com.tr> #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 15:32:00 by antigravity       ###   ########.fr       */
-/*   Updated: 2026/03/07 15:32:00 by antigravity      ###   ########.fr       */
+/*   Created: 2026-03-09 10:01:36 by musipit           #+#    #+#             */
+/*   Updated: 2026-03-09 10:01:36 by musipit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,16 @@ static void	print_count(char *label, int count)
 void	print_move_counts(void)
 {
 	int	*c;
+	int i;
+	int total;
 
+	i = 0;
+	total = 0;
 	c = get_counters();
 	ft_putstr_fd("--- Move Counts ---\n", 2);
+	while(i <= 10)
+		total = total + c[i++];
+	print_count("total", total);
 	print_count("pa", c[0]);
 	print_count("pb", c[1]);
 	print_count("sa", c[2]);

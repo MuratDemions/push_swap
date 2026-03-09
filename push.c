@@ -28,6 +28,7 @@ void    pa(t_node **a, t_node **b)
         (*a)->prev = tmp;
     *a = tmp;
     write(1, "pa\n", 3);
+    count_move("pa");
 }
 void    pb(t_node **a, t_node **b)
 {
@@ -45,4 +46,5 @@ void    pb(t_node **a, t_node **b)
         (*b)->prev = tmp;
     *b = tmp;
     write(1, "pb\n", 3);
+    count_move("pb");
 }
