@@ -33,20 +33,20 @@ static void    swap(t_node **stack)
 }
 void    sa(t_node **a)
 {
-    swap(*a);
+    swap(a);
     write(1, "sa\n", 3);
     count_move("sa");
 }
 void    sb(t_node **b)
 {
-    swap(*b);
+    swap(b);
     write(1, "sb\n", 3);
     count_move("sb");
 }
 void    ss(t_node **a, t_node **b)
 {
-    swap(*a);
-    swap(*b);
+    swap(a);
+    swap(b);
     write(1, "ss\n", 3);
     count_move("ss");
 }
