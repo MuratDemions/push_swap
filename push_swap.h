@@ -6,7 +6,7 @@
 /*   By: embostan <embostan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:04:03 by embostan          #+#    #+#             */
-/*   Updated: 2026/03/06 11:57:00 by antigravity      ###   ########.fr       */
+/*   Updated: 2026/03/10 13:08:50 by embostan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    pa(t_node **a, t_node **b);
 void    pb(t_node **a, t_node **b);
 
 void    ra(t_node **a);
-void    ra(t_node **b);
+void    rb(t_node **b);
 void    rr(t_node **a, t_node **b);
 
 void    rra(t_node **a);
@@ -66,5 +66,11 @@ void	sort_simple(t_node **a, t_node **b);
 void	sort_medium(t_node **a, t_node **b);
 void	sort_complex(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
+
+int		stack_size(t_node *stack);
+int		is_sorted(t_node *stack);
+void	index_stack(t_node *stack);
+int		max_bits(t_node *stack);
+void	radix_sort(t_node **a, t_node **b);
 
 #endif
