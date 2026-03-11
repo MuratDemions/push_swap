@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index_stack.c                                      :+:      :+:    :+:   */
+/*   is_shorted.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: embostan <embostan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 13:33:25 by embostan          #+#    #+#             */
-/*   Updated: 2026/03/09 14:19:57 by embostan         ###   ########.fr       */
+/*   Created: 2026/03/09 13:32:18 by embostan          #+#    #+#             */
+/*   Updated: 2026/03/09 14:19:51 by embostan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	index_stack(t_node *stack)
+int	is_sorted(t_node *stack)
 {
-	t_node	*current;
-	t_node	*compare;
-	int		index;
-
-	current = stack;
-	while (current)
+	while (stack && stack->next)
 	{
-		index = 0;
-		compare = stack;
-		while (compare)
-		{
-			if (current->value > compare->value)
-				index++;
-			compare = compare->next;
-		}
-		current->index = index;
-		current = current->next;
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
 	}
+	return (1);
 }
-//her sayıya index numarasını verir
+//stack küçükten büyüğe sıralı mı

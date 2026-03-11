@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 #include <stdlib.h>
 
@@ -94,4 +93,19 @@ char	*ft_itoa(int n)
 		nb = nb / 10;
 	}
 	return (str);
+}
+
+void	bench_writer(char *strategy, double disorder)
+{
+	char	*dis_str;
+
+	ft_putstr_fd("[bench] disorder:	", 2);
+	dis_str = ft_itoa((int)(disorder * 100));
+	ft_putstr_fd(dis_str, 2);
+	ft_putstr_fd("%\n", 2);
+	ft_putstr_fd("[bench] strategy:	", 2);
+	ft_putstr_fd(strategy, 2);
+	ft_putstr_fd("\n", 2);
+	print_move_counts();
+	free(dis_str);
 }

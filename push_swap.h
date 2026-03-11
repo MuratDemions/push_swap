@@ -6,7 +6,7 @@
 /*   By: embostan <embostan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:04:03 by embostan          #+#    #+#             */
-/*   Updated: 2026/03/10 13:08:50 by embostan         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:06:21 by musipit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,25 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
-void    sa(t_node **a);
-void    sb(t_node **b);
-void    ss(t_node **a, t_node **b);
+void	sa(t_node **a);
+void	sb(t_node **b);
+void	ss(t_node **a, t_node **b);
 
-void    pa(t_node **a, t_node **b);
-void    pb(t_node **a, t_node **b);
+void	pa(t_node **a, t_node **b);
+void	pb(t_node **a, t_node **b);
 
-void    ra(t_node **a);
-void    rb(t_node **b);
-void    rr(t_node **a, t_node **b);
+void	ra(t_node **a);
+void	rb(t_node **b);
+void	rr(t_node **a, t_node **b);
 
-void    rra(t_node **a);
-void    rrb(t_node **b);
-void    rrr(t_node **a, t_node **b);
+void	rra(t_node **a);
+void	rrb(t_node **b);
+void	rrr(t_node **a, t_node **b);
 
 t_node	*stack_new(int value);
 void	stack_add_back(t_node **stack, t_node *new_node);
 void	stack_clear(t_node **stack);
 int		stack_size(t_node *stack);
-
 
 double	calculate_disorder(int *arr, int size);
 
@@ -64,7 +63,6 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b);
 
 void	sort_simple(t_node **a, t_node **b);
 void	sort_medium(t_node **a, t_node **b);
-void	sort_complex(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
 int		stack_size(t_node *stack);

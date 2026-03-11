@@ -6,34 +6,20 @@
 /*   By: musipit <musipit@student.42kocaeli.com.tr> #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026-03-09 10:01:12 by musipit           #+#    #+#             */
-/*   Updated: 2026-03-09 10:01:12 by musipit          ###   ########.fr       */
+/*   Updated: 2026/03/11 18:02:55 by musipit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
-
-void	bench_writer(char *strategy, double disorder)
-{
-	char	*dis_str;
-
-	ft_putstr_fd("[bench] disorder:	", 2);
-	dis_str = ft_itoa((int)(disorder * 100));
-	ft_putstr_fd(dis_str, 2);
-	ft_putstr_fd("%\n", 2);
-	ft_putstr_fd("[bench] strategy:	", 2);
-	ft_putstr_fd(strategy, 2);
-	ft_putstr_fd("\n", 2);
-	print_move_counts();
-	free(dis_str);
-}
 
 void	router(char *strategy, t_node **a, t_node **b)
 {
 	if (strategy && ft_strcmp(strategy, "--simple") == 0)
 		sort_simple(a, b);
+	else if (strategy && ft_strcmp(strategy, "--medium") == 0)
+		sort_medium(a, b);
 	else if (strategy && ft_strcmp(strategy, "--complex") == 0)
-		sort_complex(a, b);
+		radix_sort(a, b);
 	else
 		sort_adaptive(a, b);
 }
@@ -42,35 +28,15 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 {
 	int		*arr;
 	double	disorder;
-	int		flag_detecter;
-	int		i;
 
-	i = 0;
-	flag_detecter = 0;
 	if (argc < 2)
 		return ;
-	if (ft_strcmp(argv[1], "--bench") == 0)
-	{
-		if (argc > 2 && argv[2][0] == '-')
-			flag_detecter = 2;
-		else
-			flag_detecter = 1;
-	}
-	else if (argv[1][0] == '-')
-		flag_detecter = 1;
-	arr = parse_args(argc, argv, flag_detecter);
-	if (!arr)
-		spt_error();
-	while (i < argc - 1 - flag_detecter)
-	{
-		stack_add_back(a, stack_new(arr[i]));
-		i++;
-	}
-	disorder = calculate_disorder(arr, argc - 1 - flag_detecter);
+	bench_router_helper(arr, argc, argv, a);
+	disorder = calculate_disorder(arr, argc - 1 - flag_checker(argc, argv));
 	free(arr);
 	if (ft_strcmp(argv[1], "--bench") == 0)
 	{
-		if (flag_detecter == 2)
+		if (flag_checker(argc, argv) == 2)
 		{
 			router(argv[2], a, b);
 			bench_writer(writer_router(argv[2]), disorder);
@@ -81,8 +47,36 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 			bench_writer(writer_router(NULL), disorder);
 		}
 	}
-	else if (flag_detecter == 1)
+	else if (flag_checker(argc, argv) == 1)
 		router(argv[1], a, b);
+}
+
+void	bench_router_helper(int *arr, int argc, char **argv, t_node **a)
+{
+	int	i;
+
+	i = 0;
+	arr = parse_args(argc, argv, flag_checker(argc, argv));
+	if (!arr)
+		spt_error();
+	while (i < argc - 1 - flag_checker(argc, argv))
+	{
+		stack_add_back(a, stack_new(arr[i]));
+		i++;
+	}
+}
+
+static int	flag_checker(int argc, char **argv)
+{
+	if (ft_strcmp(argv[1], "--bench") == 0)
+	{
+		if (argc > 2 && argv[2][0] == '-')
+			return (2);
+		else
+			return (1);
+	}
+	else if (argv[1][0] == '-')
+		return (1);
 }
 
 char	*writer_router(char *flag)

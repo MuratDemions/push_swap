@@ -6,7 +6,7 @@
 /*   By: musipit <musipit@student.42kocaeli.com.tr> #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026-03-09 10:01:36 by musipit           #+#    #+#             */
-/*   Updated: 2026-03-09 10:01:36 by musipit          ###   ########.fr       */
+/*   Updated: 2026/03/11 18:04:45 by musipit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static void	print_count(char *label, int count)
 void	print_move_counts(void)
 {
 	int	*c;
-	int i;
-	int total;
+	int	i;
+	int	total;
 
 	i = 0;
 	total = 0;
 	c = get_counters();
 	ft_putstr_fd("--- Move Counts ---\n", 2);
-	while(i <= 10)
+	while (i <= 10)
 		total = total + c[i++];
 	print_count("total", total);
 	print_count("pa", c[0]);
