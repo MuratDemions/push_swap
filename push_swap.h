@@ -6,7 +6,11 @@
 /*   By: embostan <embostan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:04:03 by embostan          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/03/11 18:06:21 by musipit          ###   ########.fr       */
+=======
+/*   Updated: 2026/03/12 14:48:27 by embostan         ###   ########.fr       */
+>>>>>>> a611db2 (ADD: chunk_short, UPDATE: headers)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +81,7 @@ int		max_bits(t_node *stack);
 
 void	index_stack(t_node *stack);
 void	radix_sort(t_node **a, t_node **b);
+
+void chunk_sort(t_node **a, t_node **b);
 
 #endif
