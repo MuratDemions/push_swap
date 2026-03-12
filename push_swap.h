@@ -41,9 +41,11 @@ void	rrb(t_node **b);
 void	rrr(t_node **a, t_node **b);
 
 t_node	*stack_new(int value);
+
+int		stack_size(t_node *stack);
+
 void	stack_add_back(t_node **stack, t_node *new_node);
 void	stack_clear(t_node **stack);
-int		stack_size(t_node *stack);
 
 double	calculate_disorder(int *arr, int size);
 
@@ -60,15 +62,20 @@ void	count_move(char *move);
 void	spt_error(void);
 void	router(char *strategy, t_node **a, t_node **b);
 void	bench_router(int argc, char **argv, t_node **a, t_node **b);
+void	br_helper(int *arr, int argc, char **argv, t_node **a);
+void	router(char *strategy, t_node **a, t_node **b);
+void	bench_writer(char *strategy, double disorder);
 
 void	sort_simple(t_node **a, t_node **b);
 void	sort_medium(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
+int		flag_checker(int argc, char **argv);
 int		stack_size(t_node *stack);
 int		is_sorted(t_node *stack);
-void	index_stack(t_node *stack);
 int		max_bits(t_node *stack);
+
+void	index_stack(t_node *stack);
 void	radix_sort(t_node **a, t_node **b);
 
 #endif

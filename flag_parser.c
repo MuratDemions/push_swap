@@ -29,9 +29,10 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 	int		*arr;
 	double	disorder;
 
+	arr = NULL;
 	if (argc < 2)
 		return ;
-	bench_router_helper(arr, argc, argv, a);
+	br_helper(arr, argc, argv, a);
 	disorder = calculate_disorder(arr, argc - 1 - flag_checker(argc, argv));
 	free(arr);
 	if (ft_strcmp(argv[1], "--bench") == 0)
@@ -51,7 +52,7 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 		router(argv[1], a, b);
 }
 
-void	bench_router_helper(int *arr, int argc, char **argv, t_node **a)
+void	br_helper(int *arr, int argc, char **argv, t_node **a)
 {
 	int	i;
 
@@ -66,7 +67,7 @@ void	bench_router_helper(int *arr, int argc, char **argv, t_node **a)
 	}
 }
 
-static int	flag_checker(int argc, char **argv)
+int	flag_checker(int argc, char **argv)
 {
 	if (ft_strcmp(argv[1], "--bench") == 0)
 	{
@@ -77,6 +78,7 @@ static int	flag_checker(int argc, char **argv)
 	}
 	else if (argv[1][0] == '-')
 		return (1);
+	return (0);
 }
 
 char	*writer_router(char *flag)
