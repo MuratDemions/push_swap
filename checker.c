@@ -75,12 +75,14 @@ static int	get_line(char *buf)
 
 int	main(int argc, char **argv)
 {
-	t_node	*a = NULL;
-	t_node	*b = NULL;
+	t_node	*a;
+	t_node	*b;
 	int		*arr;
 	int		i;
 	char	buf[10];
 
+	a = NULL;
+	b = NULL;
 	if (argc < 2)
 		return (0);
 	arr = parse_args(argc, argv, 0);
@@ -97,6 +99,5 @@ int	main(int argc, char **argv)
 	else
 		write(1, "KO\n", 3);
 	stack_clear(&a);
-	stack_clear(&b);
 	return (0);
 }
