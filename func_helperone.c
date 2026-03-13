@@ -13,11 +13,11 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	sum;
-	int	i;
-	int	sign;
+	long	sum;
+	int		i;
+	int		sign;
 
 	i = 0;
 	sum = 0;

@@ -14,72 +14,69 @@
 
 void	router(char *strategy, t_node **a, t_node **b)
 {
+	index_stack(*a);
 	if (strategy && ft_strcmp(strategy, "--simple") == 0)
 		sort_simple(a, b);
 	else if (strategy && ft_strcmp(strategy, "--medium") == 0)
 		chunk_sort(a, b);
-    else if (strategy && ft_strcmp(strategy, "--complex") == 0)
+	else if (strategy && ft_strcmp(strategy, "--complex") == 0)
 		radix_sort(a, b);
 	else
 		sort_adaptive(a, b);
 }
 
-void	bench_router(int argc, char **argv, t_node **a, t_node **b)
+static int	get_flag(int argc, char **argv)
+{
+	if (ft_strcmp(argv[1], "--bench") == 0 && argc > 2 && argv[2][0] == '-')
+		return (2);
+	if (ft_strcmp(argv[1], "--bench") == 0 || argv[1][0] == '-')
+		return (1);
+	return (0);
+}
+
+static double	init_stack(int argc, char **argv, t_node **a)
 {
 	int		*arr;
 	double	disorder;
-	int		flag_detecter;
 	int		i;
 
-	i = 0;
-	flag_detecter = 0;
-	if (argc < 2)
-		return ;
-	if (ft_strcmp(argv[1], "--bench") == 0)
-	{
-		if (argc > 2 && argv[2][0] == '-')
-			flag_detecter = 2;
-		else
-			flag_detecter = 1;
-	}
-	else if (argv[1][0] == '-')
-		flag_detecter = 1;
-	arr = parse_args(argc, argv, flag_detecter);
+	arr = parse_args(argc, argv, get_flag(argc, argv));
 	if (!arr)
 		spt_error();
-	while (i < argc - 1 - flag_detecter)
-	{
-		stack_add_back(a, stack_new(arr[i]));
-		i++;
-	}
-	disorder = calculate_disorder(arr, argc - 1 - flag_detecter);
+	i = 0;
+	while (i < argc - 1 - get_flag(argc, argv))
+		stack_add_back(a, stack_new(arr[i++]));
+	disorder = calculate_disorder(arr, argc - 1 - get_flag(argc, argv));
 	free(arr);
-	if (ft_strcmp(argv[1], "--bench") == 0)
-	{
-		if (flag_detecter == 2)
-		{
-			router(argv[2], a, b);
-			bench_writer(writer_router(argv[2]), disorder);
-		}
-		else
-		{
-			router(NULL, a, b);
-			bench_writer(writer_router(NULL), disorder);
-		}
-	}
-	else if (flag_detecter == 1)
-		router(argv[1], a, b);
+	return (disorder);
 }
 
-char	*writer_router(char *flag)
+static void	run_bench(char **argv, t_node **a, t_node **b, double disorder)
 {
-	if (!flag)
-		return ("Adaptive / O(n log n)");
-	if (ft_strcmp(flag, "--simple") == 0)
-		return ("Simple / O(n^2)");
-	if (ft_strcmp(flag, "--medium") == 0)
-		return ("Medium / O(n√n)");
-	if (ft_strcmp(flag, "--complex") == 0)
-		return ("Complex / O(n log n)");
-	return ("Adaptive / O(n log n)");
+	int	flag;
+
+	flag = get_flag(0, argv);
+	if (flag == 2)
+	{
+		router(argv[2], a, b);
+		bench_writer(writer_router(argv[2]), disorder);
+	}
+	else
+	{
+		router(NULL, a, b);
+		bench_writer(writer_router(NULL), disorder);
+	}
+}
+
+void	bench_router(int argc, char **argv, t_node **a, t_node **b)
+{
+	double	disorder;
+
+	if (argc < 2)
+		return ;
+	disorder = init_stack(argc, argv, a);
+	if (ft_strcmp(argv[1], "--bench") == 0)
+		run_bench(argv, a, b, disorder);
+	else if (get_flag(argc, argv) == 1)
+		router(argv[1], a, b);
 }

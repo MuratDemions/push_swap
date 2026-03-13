@@ -33,4 +33,3 @@ void	index_stack(t_node *stack)
 		current = current->next;
 	}
 }
-//her sayıya index numarasını verir

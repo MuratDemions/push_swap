@@ -50,8 +50,9 @@ void	stack_clear(t_node **stack);
 double	calculate_disorder(int *arr, int size);
 
 int		*parse_args(int argc, char **argv, int check_buf);
-int		ft_atoi(const char *nptr);
 int		ft_strcmp(const char *s1, const char *s2);
+
+long	ft_atol(const char *nptr);
 
 char	*ft_itoa(int n);
 char	*writer_router(char *flag);
@@ -67,7 +68,7 @@ void	router(char *strategy, t_node **a, t_node **b);
 void	bench_writer(char *strategy, double disorder);
 
 void	sort_simple(t_node **a, t_node **b);
-void    chunk_sort(t_node **a, t_node **b);
+void	chunk_sort(t_node **a, t_node **b);
 void	radix_sort(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
@@ -77,6 +78,5 @@ int		is_sorted(t_node *stack);
 int		max_bits(t_node *stack);
 
 void	index_stack(t_node *stack);
-
 
 #endif

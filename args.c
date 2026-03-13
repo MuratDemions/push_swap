@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+static int	int_cheker(char *argv)
+{
+	long	num;
+
+	num = ft_atol(argv);
+	if (num < -2147483648 || num > 2147483647)
+	{
+		spt_error();
+	}
+	return (num);
+}
+
 int	*parse_args(int argc, char **argv, int check_buf)
 {
 	int	*arr;
@@ -29,13 +41,10 @@ int	*parse_args(int argc, char **argv, int check_buf)
 		{
 			if (!((argv[i][j] <= '9' && argv[i][j] >= '0')
 			|| (argv[i][j] == '-' || argv[i][j] == '+')))
-			{
-				write(1, "Error", 6);
-				return (NULL);
-			}
+				spt_error();
 			j++;
 		}
-		arr[i - 1 - check_buf] = ft_atoi(argv[i]);
+		arr[i - 1 - check_buf] = int_cheker(argv[i]);
 		i++;
 	}
 	return (arr);
