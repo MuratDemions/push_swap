@@ -16,8 +16,10 @@ void	router(char *strategy, t_node **a, t_node **b)
 {
 	if (strategy && ft_strcmp(strategy, "--simple") == 0)
 		sort_simple(a, b);
-	else if (strategy && ft_strcmp(strategy, "--complex") == 0)
+	else if (strategy && ft_strcmp(strategy, "--medium") == 0)
 		chunk_sort(a, b);
+    else if (strategy && ft_strcmp(strategy, "--complex") == 0)
+		radix_sort(a, b);
 	else
 		sort_adaptive(a, b);
 }
