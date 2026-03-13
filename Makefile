@@ -2,14 +2,14 @@ NAME = push_swap
 
 CHECKER = checker
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = args.c flag_parser.c func_helperone.c str_and_error.c disorder.c \
        push.c swap.c rotate.c r_rotate.c stack_utils.c move_counter.c \
 	   index_stack.c is_sorted.c max_bits.c \
-       simple.c radix_sort.c strategy_medium.c adaptive.c
+       simple.c radix_sort.c chunk_short.c adaptive.c
 
 COMMON_OBJS = $(SRCS:.c=.o)
 

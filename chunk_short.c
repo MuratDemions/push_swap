@@ -40,7 +40,7 @@ static void push_chunk(t_node **a, t_node **b, int chunk_size)
         }
         else
             ra(a);
-        if(i = chunk_size)
+        if(i == chunk_size)
         {
             chunk_min += chunk_size;
             chunk_max += chunk_size;

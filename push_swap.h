@@ -6,11 +6,7 @@
 /*   By: embostan <embostan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:04:03 by embostan          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/11 18:06:21 by musipit          ###   ########.fr       */
-=======
 /*   Updated: 2026/03/12 14:48:27 by embostan         ###   ########.fr       */
->>>>>>> a611db2 (ADD: chunk_short, UPDATE: headers)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +67,8 @@ void	router(char *strategy, t_node **a, t_node **b);
 void	bench_writer(char *strategy, double disorder);
 
 void	sort_simple(t_node **a, t_node **b);
-void	sort_medium(t_node **a, t_node **b);
+void    chunk_sort(t_node **a, t_node **b);
+void	radix_sort(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
 int		flag_checker(int argc, char **argv);
@@ -80,8 +77,6 @@ int		is_sorted(t_node *stack);
 int		max_bits(t_node *stack);
 
 void	index_stack(t_node *stack);
-void	radix_sort(t_node **a, t_node **b);
 
-void chunk_sort(t_node **a, t_node **b);
 
 #endif

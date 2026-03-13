@@ -51,7 +51,7 @@ void	sort_adaptive(t_node **a, t_node **b)
 	if (disorder < 0.2)
 		sort_simple(a, b);
 	else if (disorder < 0.5)
-		sort_medium(a, b);
+		chunk_sort(a, b);
 	else
 		radix_sort(a, b);
 }
