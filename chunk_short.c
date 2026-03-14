@@ -24,28 +24,24 @@ static int	int_sqrt(int n)
 
 static void	push_chunk(t_node **a, t_node **b, int chunk_size)
 {
-	int	chunk_min;
-	int	chunk_max;
-	int	total;
-	int	checked;
-
-	total = stack_size(*a);
-	chunk_min = 0;
-	chunk_max = chunk_size - 1;
-	while (chunk_min < total)
+	int	i;
+	
+	i = 0;
+	while (*a)
 	{
-		checked = stack_size(*a);
-		while (checked--)
+		if ((*a)->index <= i)
 		{
-			if (!(*a))
-				break ;
-			if ((*a)->index >= chunk_min && (*a)->index <= chunk_max)
-				pb(a, b);
-			else
-				ra(a);
+			pb(a, b);
+			rb(b);
+			i++;
 		}
-		chunk_min += chunk_size;
-		chunk_max += chunk_size;
+		else if ((*a)->index <= i + chunk_size)
+		{
+			pb(a, b);
+			i++;
+		}
+		else
+			ra(a);
 	}
 }
 
@@ -75,21 +71,20 @@ static void	pull_back(t_node **a, t_node **b)
 {
 	int	pos;
 	int	size;
-	int	rotations;
 
 	while (*b)
 	{
 		size = stack_size(*b);
 		pos = find_max_pos(*b);
-		if (pos == 0)
-			return ;
-		else if (pos <= size / 2)
+		if (pos <= size / 2)
+		{
 			while (pos--)
 				rb(b);
+		}
 		else
 		{
-			rotations = size - pos;
-			while (rotations--)
+			pos = size - pos;
+			while (pos--)
 				rrb(b);
 		}
 		pa(a, b);

@@ -24,6 +24,25 @@ static int	int_cheker(char *argv)
 	return (num);
 }
 
+static void	check_duplicates(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+				spt_error(arr, NULL, NULL);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	*parse_args(int argc, char **argv, int check_buf)
 {
 	int	*arr;
@@ -47,5 +66,8 @@ int	*parse_args(int argc, char **argv, int check_buf)
 		arr[i - 1 - check_buf] = int_cheker(argv[i]);
 		i++;
 	}
+	if (argc - 1 - check_buf > 0)
+		check_duplicates(arr, argc - 1 - check_buf);
+
 	return (arr);
 }

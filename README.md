@@ -182,16 +182,41 @@ Checker programı stdin'den operasyon okuyup sonucu doğrular:
 
 ## Resources
 
--   Big-O Notation\
--   Sorting Algorithms\
--   Radix Sort\
--   Stack Data Structure
+-   [Big-O Notation](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%201%20(Fundamental%20Algorithms).pdf)
+-   [Sorting Algorithms](https://en.wikipedia.org/wiki/Sorting_algorithm)
+-   [Radix Sort](https://www.geeksforgeeks.org/dsa/radix-sort/)
+-   [Chunk Sort](https://www.cs.upc.edu/~conrado/research/talks/dmd06.pdf)
+-   [Stack Data Structure](https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm)
 
 AI şu amaçlarla kullanıldı:
 
--   Disorder metriğinin netleştirilmesi\
--   Complexity doğrulaması\
--   Edge-case senaryoları üretimi\
--   Benchmark tasarım kontrolü
+-   Disorder matematiğini öğrenme
+-   Test case  
 
 Üretilen her kod manuel olarak test edildi ve doğrulandı.
+
+## Credits :D
+
+- Bench                     : musipit
+- Disorder                  : musipit
+- README                    : musipit
+- Header                    : musipit, embostan
+<br><br>
+- Chunk Sort                : embostan
+- Radix Sort                : embostan
+- Adaptive Sort             : musipit
+- Simple Sort               : musipit
+<br><br>
+- Push op's                 : embostan
+- Swap op's                 : embostan
+- Rotate op's               : embostan
+- Reverse Rotate op's       : embostan
+<br><br>
+- Helper Funcs              : musipit
+- Makefile                  : musipit
+- Main                      : musipit
+- Stract Utils              : musipit
+- Error Func                : musipit
+<br><br>
+- Checker                   : musipit
+

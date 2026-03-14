@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-		spt_error(NULL, NULL, NULL);
+		return (0);
 	if (argv[1][0] == '-')
 		bench_router(argc, argv, &a, &b);
 	else

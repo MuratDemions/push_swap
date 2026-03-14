@@ -19,6 +19,7 @@ void	radix_sort(t_node **a, t_node **b)
 	int	j;
 	int	bits;
 
+	index_stack(*a);
 	size = stack_size(*a);
 	bits = max_bits(*a);
 	i = 0;
