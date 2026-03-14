@@ -70,10 +70,22 @@ static void	run_bench(int argc, char **argv, t_node **a, t_node **b)
 
 void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 {
+	int		*arr;
+	int		i;
+
 	if (argc < 2)
 		return ;
 	if (ft_strcmp(argv[1], "--bench") == 0)
 		run_bench(argc, argv, a, b);
 	else if (get_flag(argc, argv) == 1)
+	{
+		arr = parse_args(argc, argv, 1);
+		if (!arr)
+			spt_error(NULL, NULL, NULL);
+		i = 0;
+		while (i < argc - 2)
+			stack_add_back(a, stack_new(arr[i++]));
+		free(arr);
 		router(argv[1], a, b);
+	}
 }
