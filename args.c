@@ -19,7 +19,7 @@ static int	int_cheker(char *argv)
 	num = ft_atol(argv);
 	if (num < -2147483648 || num > 2147483647)
 	{
-		spt_error();
+		spt_error(NULL, NULL, NULL);
 	}
 	return (num);
 }
@@ -41,7 +41,7 @@ int	*parse_args(int argc, char **argv, int check_buf)
 		{
 			if (!((argv[i][j] <= '9' && argv[i][j] >= '0')
 			|| (argv[i][j] == '-' || argv[i][j] == '+')))
-				spt_error();
+				spt_error(arr, NULL, NULL);
 			j++;
 		}
 		arr[i - 1 - check_buf] = int_cheker(argv[i]);

@@ -39,32 +39,3 @@ void	radix_sort(t_node **a, t_node **b)
 	}
 }
 
-t_node	*create_node(int value, int index)
-{
-	t_node	*new_node;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->value = value;
-	new_node->index = index;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
-}
-
-void	append_node(t_node **stack, t_node *new_node)
-{
-	t_node	*tmp;
-
-	if (!*stack)
-		*stack = new_node;
-	else
-	{
-		tmp = *stack;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_node;
-		new_node->prev = tmp;
-	}
-}

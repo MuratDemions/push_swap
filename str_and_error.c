@@ -26,8 +26,14 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-void	spt_error(void)
+void	spt_error(int *arr, t_node **a, t_node **b)
 {
 	ft_putstr_fd("Error\n", 2);
+	if (a)
+		stack_clear(a);
+	if (arr)
+		free(arr);
+	if (b)
+		stack_clear(b);
 	exit(1);
 }

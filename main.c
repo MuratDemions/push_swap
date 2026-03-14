@@ -34,15 +34,20 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-		return (0);
+		spt_error(NULL, NULL, NULL);
 	if (argv[1][0] == '-')
 		bench_router(argc, argv, &a, &b);
 	else
 	{
 		arr = parse_args(argc, argv, 0);
 		if (!arr)
-			spt_error();
+			spt_error(NULL, NULL, NULL);
 		size = argc - 1;
+		if (calculate_disorder(arr, size) == 0.0)
+		{
+			free(arr);
+			return (0);
+		}
 		load_stack(&a, arr, size);
 		free(arr);
 		sort_adaptive(&a, &b);

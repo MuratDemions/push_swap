@@ -50,7 +50,7 @@ static void	execute_op(char *op, t_node **a, t_node **b)
 	else if (ft_strcmp(op, "rrr\n") == 0)
 		rrr(a, b);
 	else
-		spt_error();
+		spt_error(NULL, NULL, NULL);
 }
 
 static int	get_line(char *buf)
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 		return (0);
 	arr = parse_args(argc, argv, 0);
 	if (!arr)
-		spt_error();
+		spt_error(NULL, NULL, NULL);
 	i = 0;
 	while (i < argc - 1)
 		stack_add_back(&a, stack_new(arr[i++]));

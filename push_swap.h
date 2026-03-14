@@ -60,7 +60,7 @@ char	*writer_router(char *flag);
 void	ft_putstr_fd(char *s, int fd);
 void	print_move_counts(void);
 void	count_move(char *move);
-void	spt_error(void);
+void	spt_error(int *arr, t_node **a, t_node **b);
 void	router(char *strategy, t_node **a, t_node **b);
 void	bench_router(int argc, char **argv, t_node **a, t_node **b);
 void	br_helper(int *arr, int argc, char **argv, t_node **a);
@@ -74,7 +74,6 @@ void	sort_adaptive(t_node **a, t_node **b);
 
 int		flag_checker(int argc, char **argv);
 int		stack_size(t_node *stack);
-int		is_sorted(t_node *stack);
 int		max_bits(t_node *stack);
 
 void	index_stack(t_node *stack);

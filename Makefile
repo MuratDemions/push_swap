@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = args.c flag_parser.c func_helperone.c str_and_error.c disorder.c \
        push.c swap.c rotate.c r_rotate.c stack_utils.c move_counter.c \
-	   index_stack.c is_sorted.c func_helpertwo.c max_bits.c \
+	   index_stack.c func_helpertwo.c max_bits.c \
        simple.c radix_sort.c chunk_short.c adaptive.c
 
 COMMON_OBJS = $(SRCS:.c=.o)

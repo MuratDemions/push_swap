@@ -42,7 +42,7 @@ static double	init_stack(int argc, char **argv, t_node **a)
 
 	arr = parse_args(argc, argv, get_flag(argc, argv));
 	if (!arr)
-		spt_error();
+		spt_error(arr, NULL, NULL);
 	i = 0;
 	while (i < argc - 1 - get_flag(argc, argv))
 		stack_add_back(a, stack_new(arr[i++]));
@@ -51,12 +51,12 @@ static double	init_stack(int argc, char **argv, t_node **a)
 	return (disorder);
 }
 
-static void	run_bench(char **argv, t_node **a, t_node **b, double disorder)
+static void	run_bench(int argc, char **argv, t_node **a, t_node **b)
 {
-	int	flag;
+	double	disorder;
 
-	flag = get_flag(0, argv);
-	if (flag == 2)
+	disorder = init_stack(argc, argv, a);
+	if (argc > 2 && argv[2][0] == '-')
 	{
 		router(argv[2], a, b);
 		bench_writer(writer_router(argv[2]), disorder);
@@ -70,13 +70,10 @@ static void	run_bench(char **argv, t_node **a, t_node **b, double disorder)
 
 void	bench_router(int argc, char **argv, t_node **a, t_node **b)
 {
-	double	disorder;
-
 	if (argc < 2)
 		return ;
-	disorder = init_stack(argc, argv, a);
 	if (ft_strcmp(argv[1], "--bench") == 0)
-		run_bench(argv, a, b, disorder);
+		run_bench(argc, argv, a, b);
 	else if (get_flag(argc, argv) == 1)
 		router(argv[1], a, b);
 }
