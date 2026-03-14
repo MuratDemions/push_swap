@@ -24,12 +24,29 @@ static void	load_stack(t_node **a, int *arr, int size)
 	}
 }
 
+static void	main_helper(int argc, char **argv, t_node **a, t_node **b)
+{
+	int		*arr;
+	int		size;
+
+	arr = parse_args(argc, argv, 0);
+	if (!arr)
+		spt_error(NULL, NULL, NULL);
+	size = argc - 1;
+	if (calculate_disorder(arr, size) == 0.0)
+	{
+		free(arr);
+		return ;
+	}
+	load_stack(a, arr, size);
+	free(arr);
+	sort_adaptive(a, b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
-	int		*arr;
-	int		size;
 
 	a = NULL;
 	b = NULL;
@@ -38,20 +55,7 @@ int	main(int argc, char **argv)
 	if (argv[1][0] == '-')
 		bench_router(argc, argv, &a, &b);
 	else
-	{
-		arr = parse_args(argc, argv, 0);
-		if (!arr)
-			spt_error(NULL, NULL, NULL);
-		size = argc - 1;
-		if (calculate_disorder(arr, size) == 0.0)
-		{
-			free(arr);
-			return (0);
-		}
-		load_stack(&a, arr, size);
-		free(arr);
-		sort_adaptive(&a, &b);
-	}
+		main_helper(argc, argv, &a, &b);
 	stack_clear(&a);
 	stack_clear(&b);
 	return (0);
