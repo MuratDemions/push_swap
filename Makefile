@@ -10,7 +10,7 @@ SRCS = args.c flag_parser.c func_helperone.c str_and_error.c disorder.c \
        push.c swap.c rotate.c r_rotate.c stack_utils.c move_counter.c \
 	   index_stack.c func_helpertwo.c max_bits.c \
        simple.c radix_sort.c chunk_short.c adaptive.c small_sort.c \
-	   ft_split.c ft_substr.c
+	   ft_split.c ft_substr.c func_helperthree.c
 
 COMMON_OBJS = $(SRCS:.c=.o)
 

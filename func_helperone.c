@@ -114,10 +114,7 @@ void	bench_writer(char *strategy, double disorder)
 		ft_putstr_fd("0", 2);
 	if (dec_str)
 		ft_putstr_fd(dec_str, 2);
-	ft_putstr_fd("%\n", 2);
-	ft_putstr_fd("[bench] strategy:	", 2);
-	ft_putstr_fd(strategy, 2);
-	ft_putstr_fd("\n", 2);
+	bench_writer_help(strategy);
 	if (int_str)
 		free(int_str);
 	if (dec_str)

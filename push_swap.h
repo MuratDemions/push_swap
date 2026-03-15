@@ -70,7 +70,8 @@ void	router(char *strategy, t_node **a, t_node **b);
 void	bench_writer(char *strategy, double disorder);
 void	free_split(char **split);
 void	validate_and_fill(char **split, int *arr, int count);
-void	check_duplicates(int *arr, int count, char **split);
+void	duplicates_check(int *arr, int count, char **split);
+void	bench_writer_help(char *strategy);
 
 void	sort_simple(t_node **a, t_node **b);
 void	chunk_sort(t_node **a, t_node **b);

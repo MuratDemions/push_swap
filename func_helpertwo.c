@@ -76,7 +76,7 @@ void	validate_and_fill(char **split, int *arr, int count)
 	}
 }
 
-void	check_duplicates(int *arr, int count, char **split)
+void	duplicates_check(int *arr, int count, char **split)
 {
 	int	i;
 	int	j;

@@ -62,7 +62,7 @@ int	*handle_single_arg(char *arg)
 		return (NULL);
 	}
 	validate_and_fill(split, arr, count);
-	check_duplicates(arr, count, split);
+	duplicates_check(arr, count, split);
 	free_split(split);
 	return (arr);
 }
