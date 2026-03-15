@@ -29,10 +29,11 @@ void	sort_adaptive(t_node **a, t_node **b)
 	arr = (int *)malloc(sizeof(int) * size);
 	tmp = *a;
 	i = 0;
-	while (i++ < size)
+	while (i < size)
 	{
 		arr[i] = tmp->value;
 		tmp = tmp->next;
+		i++;
 	}
 	disorder = calculate_disorder(arr, size);
 	adaptive_disorder_part(a, b, disorder);

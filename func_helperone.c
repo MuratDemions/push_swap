@@ -97,15 +97,30 @@ char	*ft_itoa(int n)
 
 void	bench_writer(char *strategy, double disorder)
 {
-	char	*dis_str;
+	int		percentage_int;
+	int		percentage_dec;
+	char	*int_str;
+	char	*dec_str;
 
 	ft_putstr_fd("[bench] disorder:	", 2);
-	dis_str = ft_itoa((int)(disorder * 100));
-	ft_putstr_fd(dis_str, 2);
+	percentage_int = (int)(disorder * 100);
+	percentage_dec = (int)((disorder * 10000) - (percentage_int * 100));
+	int_str = ft_itoa(percentage_int);
+	dec_str = ft_itoa(percentage_dec);
+	if (int_str)
+		ft_putstr_fd(int_str, 2);
+	ft_putstr_fd(".", 2);
+	if (percentage_dec < 10)
+		ft_putstr_fd("0", 2);
+	if (dec_str)
+		ft_putstr_fd(dec_str, 2);
 	ft_putstr_fd("%\n", 2);
 	ft_putstr_fd("[bench] strategy:	", 2);
 	ft_putstr_fd(strategy, 2);
 	ft_putstr_fd("\n", 2);
+	if (int_str)
+		free(int_str);
+	if (dec_str)
+		free(dec_str);
 	print_move_counts();
-	free(dis_str);
 }

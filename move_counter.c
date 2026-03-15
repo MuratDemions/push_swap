@@ -58,9 +58,12 @@ static void	print_count(char *label, int count)
 	ft_putstr_fd(label, 2);
 	ft_putstr_fd(": ", 2);
 	num_str = ft_itoa(count);
-	ft_putstr_fd(num_str, 2);
+	if (num_str)
+	{
+		ft_putstr_fd(num_str, 2);
+		free(num_str);
+	}
 	ft_putstr_fd("\n", 2);
-	free(num_str);
 }
 
 void	print_move_counts(void)

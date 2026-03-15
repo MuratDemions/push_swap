@@ -85,7 +85,6 @@ static void	process_single_arg(char *arg, t_node **a, t_node **b)
 	arr = handle_single_arg(arg);
 	if (!arr)
 	{
-		free_split(split);
 		spt_error(NULL, NULL, NULL);
 	}
 	load_stack(a, arr, size);
