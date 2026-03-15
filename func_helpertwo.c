@@ -24,3 +24,25 @@ char	*writer_router(char *flag)
 		return ("Complex / O(n log n)");
 	return ("Adaptive / O(n log n)");
 }
+
+int	get_min_pos(t_node *a)
+{
+	int	min;
+	int	pos;
+	int	i;
+
+	min = a->value;
+	pos = 0;
+	i = 0;
+	while (a)
+	{
+		if (a->value < min)
+		{
+			min = a->value;
+			pos = i;
+		}
+		a = a->next;
+		i++;
+	}
+	return (pos);
+}

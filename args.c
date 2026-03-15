@@ -68,6 +68,5 @@ int	*parse_args(int argc, char **argv, int check_buf)
 	}
 	if (argc - 1 - check_buf > 0)
 		check_duplicates(arr, argc - 1 - check_buf);
-
 	return (arr);
 }

@@ -15,19 +15,37 @@
 void	sort_adaptive(t_node **a, t_node **b)
 {
 	int		size;
+	int		*arr;
+	double	disorder;
+	t_node	*tmp;
+	int		i;
 
 	size = stack_size(*a);
-	if (size <= 1)
-		return ;
-	if (size <= 3)
+	if (size >= 1 && size <= 5)
 	{
-		sort_small(a, b);
+		sort_small(a, b, size);
 		return ;
 	}
-	if (size <= 5)
+	arr = (int *)malloc(sizeof(int) * size);
+	tmp = *a;
+	i = 0;
+	while (i++ < size)
 	{
-		sort_small(a, b);
-		return ;
+		arr[i] = tmp->value;
+		tmp = tmp->next;
 	}
-	sort_simple(a, b);
+	disorder = calculate_disorder(arr, size);
+	adaptive_disorder_part(a, b, disorder);
+	free(arr);
+}
+
+void	adaptive_disorder_part(t_node **a, t_node **b, double disorder)
+{
+	if (disorder < 0.2)
+		sort_simple(a, b);
+	else if (disorder < 0.5)
+		chunk_sort(a, b);
+	else if (disorder >= 0.5)
+		radix_sort(a, b);
+	return ;
 }

@@ -25,7 +25,7 @@ static int	int_sqrt(int n)
 static void	push_chunk(t_node **a, t_node **b, int chunk_size)
 {
 	int	i;
-	
+
 	i = 0;
 	while (*a)
 	{
@@ -94,7 +94,14 @@ static void	pull_back(t_node **a, t_node **b)
 void	chunk_sort(t_node **a, t_node **b)
 {
 	int	chunk_size;
+	int	size;
 
+	size = stack_size(*a);
+	if (size >= 1 && size <= 5)
+	{
+		sort_small(a, b, size);
+		return ;
+	}
 	chunk_size = int_sqrt(stack_size(*a));
 	push_chunk(a, b, chunk_size);
 	pull_back(a, b);

@@ -40,6 +40,11 @@ void	sort_simple(t_node **a, t_node **b)
 	int	pos;
 
 	size = stack_size(*a);
+	if (size >= 1 && size <= 5)
+	{
+		sort_small(a, b, size);
+		return ;
+	}
 	while (size > 0)
 	{
 		pos = min_pos(*a);

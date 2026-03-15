@@ -75,7 +75,10 @@ void	sort_adaptive(t_node **a, t_node **b);
 int		flag_checker(int argc, char **argv);
 int		stack_size(t_node *stack);
 int		max_bits(t_node *stack);
+int		get_min_pos(t_node *a);
 
+void	adaptive_disorder_part(t_node **a, t_node **b, double disorder);
+void	sort_small(t_node **a, t_node **b, int size);
 void	index_stack(t_node *stack);
 
 #endif

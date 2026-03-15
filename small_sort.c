@@ -1,78 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: musipit <musipit@student.42kocaeli.com.tr> #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026-03-15 12:04:01 by musipit           #+#    #+#             */
+/*   Updated: 2026-03-15 12:04:01 by musipit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int	get_min_pos(t_node *a)
-{
-	int	min;
-	int	pos;
-	int	i;
-
-	min = a->value;
-	pos = 0;
-	i = 0;
-	while (a)
-	{
-		if (a->value < min)
-		{
-			min = a->value;
-			pos = i;
-		}
-		a = a->next;
-		i++;
-	}
-	return (pos);
-}
-
-void	sort_two(t_node **a)
+static void	sort_two(t_node **a)
 {
 	if ((*a)->value > (*a)->next->value)
 		sa(a);
 }
 
-void	sort_three(t_node **a)
+static void	sort_three(t_node **a)
 {
 	int	top;
 	int	mid;
 	int	bot;
 
-	top = (*a)->index;
-	mid = (*a)->next->index;
-	bot = (*a)->next->next->index;
-	if (top == 0 && mid == 1 && bot == 2)
+	top = (*a)->value;
+	mid = (*a)->next->value;
+	bot = (*a)->next->next->value;
+	if (top < mid && mid < bot)
 		return ;
-	else if (top == 0 && mid == 2 && bot == 1)
-		rra(a);
-	else if (top == 1 && mid == 0 && bot == 2)
-		sa(a);
-	else if (top == 1 && mid == 2 && bot == 0)
-		ra(a);
-	else if (top == 2 && mid == 0 && bot == 1)
+	else if (top < bot && bot < mid)
 	{
 		sa(a);
 		ra(a);
 	}
-	else if (top == 2 && mid == 1 && bot == 0)
+	else if (mid < top && top < bot)
+		sa(a);
+	else if (mid < bot && bot < top)
+		ra(a);
+	else if (bot < top && top < mid)
+		rra(a);
+	else if (bot < mid && mid < top)
 	{
 		sa(a);
 		rra(a);
 	}
 }
 
-void	sort_four_and_five(t_node **a, t_node **b)
+static void	push_min_to_b(t_node **a, t_node **b)
 {
-	int	min_pos_val;
+	int	min_pos;
+	int	size;
+	int	i;
+
+	size = stack_size(*a);
+	min_pos = get_min_pos(*a);
+	i = 0;
+	if (min_pos <= size / 2)
+	{
+		while (i < min_pos)
+		{
+			ra(a);
+			i++;
+		}
+	}
+	else
+	{
+		while (i < size - min_pos)
+		{
+			rra(a);
+			i++;
+		}
+	}
+	pb(a, b);
+}
+
+static void	sort_four_and_five(t_node **a, t_node **b)
+{
 	int	size;
 
 	size = stack_size(*a);
 	while (size > 3)
 	{
-		min_pos_val = get_min_pos(*a);
-		if (min_pos_val <= size / 2)
-			while (min_pos_val-- > 0)
-				ra(a);
-		else
-			while (min_pos_val++ < size)
-				rra(a);
-		pb(a, b);
+		push_min_to_b(a, b);
 		size--;
 	}
 	sort_three(a);
@@ -80,11 +90,8 @@ void	sort_four_and_five(t_node **a, t_node **b)
 		pa(a, b);
 }
 
-void	sort_small(t_node **a, t_node **b)
+void	sort_small(t_node **a, t_node **b, int size)
 {
-	int	size;
-
-	size = stack_size(*a);
 	if (size == 1)
 		return ;
 	else if (size == 2)
