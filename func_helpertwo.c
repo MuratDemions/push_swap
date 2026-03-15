@@ -46,3 +46,55 @@ int	get_min_pos(t_node *a)
 	}
 	return (pos);
 }
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split && split[i])
+		free(split[i++]);
+	free(split);
+}
+
+void	validate_and_fill(char **split, int *arr, int count)
+{
+	int		i;
+	long	num;
+
+	i = -1;
+	while (++i < count)
+	{
+		num = ft_atol(split[i]);
+		if (num < -2147483648 || num > 2147483647)
+		{
+			free_split(split);
+			free(arr);
+			spt_error(NULL, NULL, NULL);
+		}
+		arr[i] = (int)num;
+	}
+}
+
+void	check_duplicates(int *arr, int count, char **split)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < count)
+	{
+		j = i + 1;
+		while (j < count)
+		{
+			if (arr[i] == arr[j])
+			{
+				free_split(split);
+				free(arr);
+				spt_error(NULL, NULL, NULL);
+			}
+			j++;
+		}
+		i++;
+	}
+}

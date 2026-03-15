@@ -43,6 +43,57 @@ static void	main_helper(int argc, char **argv, t_node **a, t_node **b)
 	sort_adaptive(a, b);
 }
 
+int	*handle_single_arg(char *arg)
+{
+	char	**split;
+	int		*arr;
+	int		count;
+
+	split = ft_split(arg, ' ');
+	if (!split)
+		return (NULL);
+	count = 0;
+	while (split[count])
+		count++;
+	arr = malloc(sizeof(int) * count);
+	if (!arr)
+	{
+		free_split(split);
+		return (NULL);
+	}
+	validate_and_fill(split, arr, count);
+	check_duplicates(arr, count, split);
+	free_split(split);
+	return (arr);
+}
+
+static void	process_single_arg(char *arg, t_node **a, t_node **b)
+{
+	int		*arr;
+	int		size;
+	char	**split;
+
+	split = ft_split(arg, ' ');
+	if (!split || !split[0])
+	{
+		free_split(split);
+		return ;
+	}
+	size = 0;
+	while (split[size])
+		size++;
+	arr = handle_single_arg(arg);
+	if (!arr)
+	{
+		free_split(split);
+		spt_error(NULL, NULL, NULL);
+	}
+	load_stack(a, arr, size);
+	sort_adaptive(a, b);
+	free(arr);
+	free_split(split);
+}
+
 int	main(int argc, char **argv)
 {
 	t_node	*a;
@@ -52,7 +103,9 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		return (0);
-	if (argv[1][0] == '-')
+	if (argc == 2 && argv[1][0] != '-')
+		process_single_arg(argv[1], &a, &b);
+	else if (argv[1][0] == '-')
 		bench_router(argc, argv, &a, &b);
 	else
 		main_helper(argc, argv, &a, &b);

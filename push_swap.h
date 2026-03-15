@@ -56,6 +56,8 @@ long	ft_atol(const char *nptr);
 
 char	*ft_itoa(int n);
 char	*writer_router(char *flag);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 void	ft_putstr_fd(char *s, int fd);
 void	print_move_counts(void);
@@ -66,12 +68,16 @@ void	bench_router(int argc, char **argv, t_node **a, t_node **b);
 void	br_helper(int *arr, int argc, char **argv, t_node **a);
 void	router(char *strategy, t_node **a, t_node **b);
 void	bench_writer(char *strategy, double disorder);
+void	free_split(char **split);
+void	validate_and_fill(char **split, int *arr, int count);
+void	check_duplicates(int *arr, int count, char **split);
 
 void	sort_simple(t_node **a, t_node **b);
 void	chunk_sort(t_node **a, t_node **b);
 void	radix_sort(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
+int		*handle_single_arg(char *arg);
 int		flag_checker(int argc, char **argv);
 int		stack_size(t_node *stack);
 int		max_bits(t_node *stack);
